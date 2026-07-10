@@ -1,5 +1,5 @@
 import { categoria_producto } from "../types/categoriaProducto";
-import { estado_venta } from "../types/estado_venta";
+import { estado_venta } from "../types/estadoVenta";
 
 export interface Producto{
     id_producto: number,
