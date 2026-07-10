@@ -1,16 +1,6 @@
 import { Cliente } from "../models/clientes";
 import { Producto } from "../models/producto";
 
-const DOMINIOS_PERMITIDOS = ["@gmail.com", "@yahoo.com", "@outlook.com"];
-
-export function validarCorreo(correo: string): void {
-    const correoMin = correo.toLowerCase();
-    const esValido = DOMINIOS_PERMITIDOS.some(dominio => correoMin.endsWith(dominio));
-    if (!esValido) {
-        throw new Error("El correo debe ser de @gmail.com, @Yahoo.com o @outlook.com.");
-    }
-}
-
 export function validarCliente(c: Cliente): void {
     if (!c.nombre_cliente || c.nombre_cliente.trim() === "") {
         throw new Error("El nombre no puede estar vacío.");
@@ -25,7 +15,10 @@ export function validarCliente(c: Cliente): void {
         throw new Error("El DPI debe ser un número válido.");
     }
 
-    validarCorreo(c.correo_cliente);
+    const correo = c.correo_cliente.toLowerCase();
+    if (!correo.includes("@gmail.com") && !correo.includes("@yahoo.com") && !correo.includes("@outlook.com")) {
+        throw new Error("El correo debe ser de @gmail.com, @Yahoo.com o @outlook.com.");
+    }
 }
 
 export function validarProducto(p: Producto): void {
