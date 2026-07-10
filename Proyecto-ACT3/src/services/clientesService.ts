@@ -21,6 +21,7 @@ export async function crearCliente(nuevoCliente: Cliente): Promise<void> {
 }
 
 export async function actualizarCliente(id: number, actualizarDatos: Cliente): Promise<boolean> {
+  validarCliente(actualizarDatos);
   const clientes: Cliente[] = await leerClientes();
   if(id <= 0 ) return false;
   
@@ -29,8 +30,8 @@ export async function actualizarCliente(id: number, actualizarDatos: Cliente): P
     return false;
   }
 
-  clientes[index] = { ...clientes[index], ...actualizarCliente};
-  await escribirClientes;
+  clientes[index] = { ...clientes[index], ...actualizarDatos};
+  await escribirClientes(clientes);
   return true;
 }
 
