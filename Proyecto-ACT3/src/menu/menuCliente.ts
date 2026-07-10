@@ -1,7 +1,7 @@
 import { rl } from "../utils/readline"
 import { listarCliente, buscarCliente, crearCliente, actualizarCliente, eliminarClientePorId } from "../services/clientesService"
 import { menu } from "./menu"
-import { tipo_cliente } from "../models/tipo_cliente"
+import { tipo_cliente } from "../enums/tipoCliente"
 import { Cliente } from "../models/clientes"
 
 export function menuCliente() {

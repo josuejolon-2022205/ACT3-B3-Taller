@@ -1,8 +1,8 @@
 import { rl } from "../utils/readline"
 import { listarProducto, buscarProducto, crearProducto, actualizarProducto, eliminarProductoPorId, calcularVentaProducto } from "../services/productoService"
 import { menu } from "./menu"
-import { categoria_producto } from "../models/categoriaProducto"
-import { estado_venta } from "../models/estado_venta"
+import { categoria_producto } from "../types/categoriaProducto"
+import { estado_venta } from "../types/estado_venta"
 import { Producto } from "../models/producto"
 
 

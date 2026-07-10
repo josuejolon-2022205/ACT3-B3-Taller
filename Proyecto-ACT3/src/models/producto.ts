@@ -1,5 +1,5 @@
-import { categoria_producto } from "./categoriaProducto";
-import { estado_venta } from "./estado_venta";
+import { categoria_producto } from "../types/categoriaProducto";
+import { estado_venta } from "../types/estado_venta";
 
 export interface Producto{
     id_producto: number,

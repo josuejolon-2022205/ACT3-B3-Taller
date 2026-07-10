@@ -1,4 +1,4 @@
-import { tipo_cliente } from "./tipo_cliente"
+import { tipo_cliente } from "../enums/tipoCliente"
 
 export interface Cliente{
     id_cliente:number,
