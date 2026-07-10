@@ -1,52 +1,50 @@
-import { cliente } from "../data/clientes"
-import { Cliente } from "../models/clientes"
+import { Cliente } from "../models/clientes";
+import { leerClientes } from "../utils/reader";
+import { escribirClientes } from "../utils/writer";
+import { validarCliente } from "../utils/validaciones"
 
-export function listarCliente(): Cliente[] {
-  return cliente;
+export async function listarCliente(): Promise<Cliente[] | string> {
+  return listarCliente();
 }
 
 
-export function buscarCliente(id: number): Cliente | undefined {
-  return cliente.find(c => c.id_cliente === id);
+export async function buscarCliente(id: number): Promise<Cliente | null> {
+  const clientes: Cliente[] = await leerClientes();
+  return clientes.find(c => c.id_cliente === id) || null;
 }
 
-export function crearCliente(nuevoCliente: Cliente): Cliente | string {
-  if(nuevoCliente.telefono_cliente.toString().length > 8 || nuevoCliente.telefono_cliente.toString().length < 8)
-    return "el telefono tiene que tener mas de 8 digitos o no tener menos de 8 digitos";
+export async function crearCliente(nuevoCliente: Cliente): Promise<void> {
+  const clientes: Cliente[] = await leerClientes();
+  clientes.push(nuevoCliente);
+  await escribirClientes(clientes);
 
-  if(!nuevoCliente.correo_cliente.includes("@gmail.com"))
-    return "el correo del cliente tiene que tener el dominio de '@gmail.com' "
-
-  if(nuevoCliente.dpi_cliente.toString().length <8)
-    return "el dpi no es valido, tiene que tener mas de 8 caracteres"
-
-  if(!nuevoCliente.id_cliente) {
-    nuevoCliente.id_cliente = cliente.length + 1;
-  }
-  cliente.push(nuevoCliente);
-  return nuevoCliente;
 }
 
-export function actualizarCliente(id: number, actualizarDatos: Partial<Cliente>): Cliente | string {
-  const cliente = buscarCliente(id);
-  if(!cliente) return "Cliente no encontrado";
-
-  if(actualizarDatos.telefono_cliente !== undefined && actualizarDatos.telefono_cliente.toString().length < 8)
-    return "el teléfono debe tener al menos 8 dígitos.";
-
-    if(actualizarDatos.correo_cliente !== undefined && !actualizarDatos.correo_cliente.includes("@"))
-      return "Error: el correo no es válido.";
+export async function actualizarCliente(id: number, actualizarDatos: Cliente): Promise<boolean> {
+  const clientes: Cliente[] = await leerClientes();
+  if(id <= 0 ) return false;
   
-  Object.assign(cliente, actualizarDatos);
-  return cliente;
+  const index = clientes.findIndex(c => c.id_cliente === id);
+  if(index === -1){
+    return false;
+  }
+
+  clientes[index] = { ...clientes[index], ...actualizarCliente};
+  await escribirClientes;
+  return true;
 }
 
 
-export function eliminarClientePorId(id: number): void {
-  if(cliente.length > 0) {
-
-    const nuevosClientes = cliente.filter(c => c.id_cliente !== id);
-    cliente.length = 0;
-    cliente.push(...nuevosClientes);
+export async function eliminarClientePorId(id: number): Promise<boolean> {
+  const clientes: Cliente[] = await leerClientes();
+  if(id <= 0 ) return false;
+  
+  const index = clientes.findIndex(c => c.id_cliente === id);
+  if(index === -1){
+    return false;
   }
+
+  clientes.splice(index, 1)
+  await escribirClientes;
+  return true;
 }
