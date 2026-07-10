@@ -1,13 +1,12 @@
 import { Producto } from "../models/producto";
-import { categoria_producto } from "../types/categoriaProducto";
-import { Cliente } from "../models/clientes";
-import { listarCliente } from "./clientesService";
 import { leerProductos } from "../utils/reader";
 import { escribirClientes, escribirProductos } from "../utils/writer";
+import { validarProducto } from "../utils/validaciones";
 
 
-export async function listarProducto(): Promise<Cliente[] | string> {
-    return listarCliente();
+
+export async function listarProducto(): Promise<Producto[] | string> {
+    return listarProducto();
 }
 
 export async function buscarProducto(id: number): Promise<Producto | null>{
@@ -16,22 +15,23 @@ export async function buscarProducto(id: number): Promise<Producto | null>{
 }
 
 export async function crearProducto(nuevoProducto: Producto): Promise<void>  {
+    validarProducto(nuevoProducto)
     const productos: Producto[] = await leerProductos();
     productos.push(nuevoProducto);
     await escribirProductos(productos);
 }
 
-export async function actualizarProducto(id: number, ActualizarDatos: Promise<Producto | null>) {
-      const productos: Producto[] = await leerProductos();
-      if(id <= 0 ) return false;
-      
-      const index = productos.findIndex(p => p.id_producto === id);
-      if(index === -1){
+export async function actualizarProducto(id: number, ActualizarDatos: Producto): Promise<boolean> {
+    const productos: Producto[] = await leerProductos();
+    if(id <= 0 ) return false;
+    
+    const index = productos.findIndex(p => p.id_producto === id);
+    if(index === -1){
         return false;
       }
     
-      productos[index] = { ...productos[index], ...actualizarProducto};
-      await escribirProductos;
+      productos[index] = { ...productos[index], ...ActualizarDatos};
+      await escribirProductos(productos);
       return true;
 }
 
