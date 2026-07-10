@@ -1,6 +1,6 @@
-import * as readline from "readline"
+import { createInterface } from "readline/promises";
 
-export const rl = readline.createInterface({
+export const rl = createInterface({
     input: process.stdin,
     output: process.stdout
 });
