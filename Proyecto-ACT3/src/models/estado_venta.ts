@@ -1,1 +1,0 @@
-export type estado_venta = "pagado" | "pendiente" | "cancelada"
