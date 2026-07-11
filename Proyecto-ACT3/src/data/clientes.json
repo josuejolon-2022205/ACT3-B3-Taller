@@ -8,5 +8,46 @@
     "tipo_cliente": "NUEVO",
     "dpi_cliente": 124345,
     "correo_cliente": "caldo@gmail.com"
+  },
+
+  {
+    "id_cliente": 2,
+    "nombre_cliente": "María",
+    "apellido_cliente": "López",
+    "direccion_cliente": "Zona 5",
+    "telefono_cliente": 42158796,
+    "tipo_cliente": "FRECUENTE",
+    "dpi_cliente": 234567,
+    "correo_cliente": "maria.lopez@gmail.com"
+  },
+  {
+    "id_cliente": 3,
+    "nombre_cliente": "José",
+    "apellido_cliente": "Pérez",
+    "direccion_cliente": "Zona 12",
+    "telefono_cliente": 55896321,
+    "tipo_cliente": "MAYORISTA",
+    "dpi_cliente": 345678,
+    "correo_cliente": "jose.perez@gmail.com"
+  },
+  {
+    "id_cliente": 4,
+    "nombre_cliente": "Ana",
+    "apellido_cliente": "García",
+    "direccion_cliente": "Zona 1",
+    "telefono_cliente": 47851236,
+    "tipo_cliente": "NUEVO",
+    "dpi_cliente": 456789,
+    "correo_cliente": "ana.garcia@gmail.com"
+  },
+  {
+    "id_cliente": 5,
+    "nombre_cliente": "Luis",
+    "apellido_cliente": "Hernández",
+    "direccion_cliente": "Zona 10",
+    "telefono_cliente": 59231478,
+    "tipo_cliente": "FRECUENTE",
+    "dpi_cliente": 567890,
+    "correo_cliente": "luis.hernandez@gmail.com"
   }
 ]
