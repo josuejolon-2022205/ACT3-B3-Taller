@@ -12,7 +12,7 @@ export async function escribirClientes(clientes: Cliente[]) {
 
 export async function escribirProductos(productos: Producto[]) {
     try {
-        await writeFile("./src/data/productos.json", JSON.stringify(productos, null, 2));
+        await writeFile("./src/data/producto.json", JSON.stringify(productos, null, 2));
     } catch (error) {
         console.error("Error al escribir el archivo de productos:", error);
     }
