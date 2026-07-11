@@ -22,11 +22,11 @@ export async function leerClientes() {
 
 export async function leerProductos() {
     try {
-        const data = await readFile("./src/data/productos.json", "utf8");
+        const data = await readFile("./src/data/producto.json", "utf8");
         return JSON.parse(data);
     } catch (error: any) {
         if (error.code === "ENOENT") {
-            await writeFile("./src/data/productos.json", "[]", "utf8");
+            await writeFile("./src/data/producto.json", "[]", "utf8");
             return "El archivo no existe, creando uno nuevo...";
         }
 
