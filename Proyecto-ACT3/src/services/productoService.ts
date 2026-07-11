@@ -15,6 +15,7 @@ export async function buscarProducto(id: number): Promise<Producto | null> {
 export async function crearProducto(nuevoProducto: Producto): Promise<void> {
     validarProducto(nuevoProducto);
     const productos: Producto[] = await leerProductos();
+    nuevoProducto.id_producto = productos.length > 0 ? Math.max(...productos.map(p => p.id_producto)) + 1 : 1;
     productos.push(nuevoProducto);
     await escribirProductos(productos);
 }
