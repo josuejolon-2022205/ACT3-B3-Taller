@@ -15,6 +15,7 @@ export async function buscarCliente(id: number): Promise<Cliente | null> {
 export async function crearCliente(nuevoCliente: Cliente): Promise<void> {
   validarCliente(nuevoCliente);
   const clientes: Cliente[] = await leerClientes();
+  nuevoCliente.id_cliente = clientes.length > 0 ? Math.max(...clientes.map(c => c.id_cliente)) + 1 : 1;
   clientes.push(nuevoCliente);
   await escribirClientes(clientes);
 }
